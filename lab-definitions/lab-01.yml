@@ -1,4 +1,4 @@
-name: "lab-1-multivendor"
+name: "lab-01"
 
 mgmt:
   network: "containerlab-mgmt" # management network name
@@ -12,16 +12,16 @@ topology:
       image: "h4ndzdatm0ld/ceosimage:4.28.0F"
       binds:
         - "mymapping.json:/mnt/flash/EosIntfMapping.json:ro"
-    vr-xrv:
-      image: "h4ndzdatm0ld/vr-xrv9k:7.2.1" # clab/clab@123
+    vr-csr:
+      image: "h4ndzdatm0ld/vr-csr:17.03.02"
   nodes:
     ceos1:
       kind: "ceos"
       mgmt_ipv4: "172.200.210.11"
       mgmt_ipv6: "2001:172:200:210::11"
-    xrv1:
-      kind: "vr-xrv"
+    csr1:
+      kind: "vr-csr"
       mgmt_ipv4: "172.200.210.12"
       mgmt_ipv6: "2001:172:200:210::12"
   links:
-    - endpoints: ["ceos1:eth1", "xrv1:eth1"]
+    - endpoints: ["ceos1:eth1", "csr1:eth1"]
