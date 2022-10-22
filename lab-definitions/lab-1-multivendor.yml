@@ -1,0 +1,27 @@
+name: "lab-1-multivendor"
+
+mgmt:
+  network: "containerlab-mgmt" # management network name
+  ipv4_subnet: "172.200.210.0/24" # ipv4 range
+  ipv6_subnet: "2001:172:200:210::/80" # ipv6 range (optional)
+
+topology:
+  defaults:
+  kinds:
+    ceos:
+      image: "h4ndzdatm0ld/ceosimage:4.28.0F"
+      binds:
+        - "mymapping.json:/mnt/flash/EosIntfMapping.json:ro"
+    vr-xrv:
+      image: "h4ndzdatm0ld/vr-xrv9k:7.2.1" # clab/clab@123
+  nodes:
+    ceos1:
+      kind: "ceos"
+      mgmt_ipv4: "172.200.210.11"
+      mgmt_ipv6: "2001:172:200:210::11"
+    xrv1:
+      kind: "vr-xrv"
+      mgmt_ipv4: "172.200.210.12"
+      mgmt_ipv6: "2001:172:200:210::12"
+  links:
+    - endpoints: ["ceos1:eth1", "xrv1:eth1"]
