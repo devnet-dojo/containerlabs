@@ -11,6 +11,6 @@ services:
       - "/etc/hosts:/etc/hosts"
       - "./:/src/"
     pid: "host"
-    command: "containerlab deploy -t lab-definitions/lab-1-multivendor.yml --reconfigure"
+    command: "containerlab deploy -t lab-definitions/lab-01.yml"
     privileged: true
     tty: true
